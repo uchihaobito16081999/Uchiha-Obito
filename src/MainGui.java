@@ -176,6 +176,7 @@ public class MainGui extends JFrame {
 		btnNewButton_2.setIcon(imgIcon_1);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		frameMain.getContentPane().add(btnNewButton_2);
@@ -205,11 +206,11 @@ public class MainGui extends JFrame {
 		textArea_1 = new JTextArea();
 		textArea_1.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					content ="You :"  + textArea_1.getText()+ '\n';
-					textArea.append((content   ));
-					textArea_1.setText("");
+			public void keyTyped(KeyEvent e) {
+				if (e.getKeyChar() == '\n') {
+					content ="You :"  + textArea_1.getText();
+					textArea.append(content);
+					textArea_1.setText(null);
 					
 				}
 			}
