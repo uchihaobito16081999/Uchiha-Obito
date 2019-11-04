@@ -38,6 +38,8 @@ import javax.swing.JToolBar;
 import javax.swing.JSlider;
 import javax.swing.JSeparator;
 import javax.swing.JComboBox;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class MainGui extends JFrame {
 
@@ -162,7 +164,7 @@ public class MainGui extends JFrame {
 		btnNewButton_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				content = textArea_1.getText() + "\n";
+				content ="You : " + textArea_1.getText() + "\n";
 				textArea.append((content ));
 				textArea_1.setText("");
 			}
@@ -179,6 +181,9 @@ public class MainGui extends JFrame {
 		frameMain.getContentPane().add(btnNewButton_2);
 		
 		textArea = new JTextArea();
+		
+		
+		
 		textArea.setEditable(false);
 		textArea.setBounds(192, 121, 379, 303);
 		textArea.setLineWrap(true);
@@ -198,6 +203,17 @@ public class MainGui extends JFrame {
 		});
 		
 		textArea_1 = new JTextArea();
+		textArea_1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					content ="You :"  + textArea_1.getText()+ '\n';
+					textArea.append((content   ));
+					textArea_1.setText("");
+					
+				}
+			}
+		});
 		textArea_1.setBounds(192, 436, 380, 93);
 		textArea_1.setLineWrap(true);
 //		frameMain.getContentPane().add(textArea_1);
