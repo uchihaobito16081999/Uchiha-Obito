@@ -38,6 +38,8 @@ import javax.swing.JToolBar;
 import javax.swing.JSlider;
 import javax.swing.JSeparator;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -50,12 +52,12 @@ public class MainGui extends JFrame {
 	private static JList<String> listActive;
 	private JPanel contentPane;
 	private JTextField textField_1;
-	private JButton btnNewButton_2;
+	private JButton sendMessageButton;
 	private JTextArea textArea;
-	private JTextArea textArea_1;
+	private JTextArea textArea_userInput;
 	private JScrollBar scrollBar;
 	private JButton sendFileButton;
-	private JButton btnNewButton_4;
+	private JButton sendPictureButton;
 	private JScrollPane scroll_bar;
 //	private final Action action = new SwingAction();
 	private String content;
@@ -160,25 +162,26 @@ public class MainGui extends JFrame {
 		btnNewButton_1.setBounds(564, 1, 117, 29);
 		frameMain.getContentPane().add(btnNewButton_1);
 		
-		btnNewButton_2 = new JButton();//send message
-		btnNewButton_2.addMouseListener(new MouseAdapter() {
+		sendMessageButton = new JButton();//send message
+		sendMessageButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				content ="You : " + textArea_1.getText() + "\n";
+			public void mousePressed(MouseEvent e) {
+				content ="You : " + textArea_userInput.getText() + "\n";
 				textArea.append((content ));
-				textArea_1.setText("");
+				textArea_userInput.setText("");
 			}
 		});
-		btnNewButton_2.setBounds(586, 436, 96, 96);
-		btnNewButton_2.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		btnNewButton_2.setBackground(new Color(253, 245, 230));
+		
+		sendMessageButton.setBounds(586, 436, 96, 96);
+		sendMessageButton.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		sendMessageButton.setBackground(new Color(253, 245, 230));
 		ImageIcon imgIcon_1 = new ImageIcon(new ImageIcon("2.jpg").getImage().getScaledInstance(96, 96, Image.SCALE_SMOOTH));
-		btnNewButton_2.setIcon(imgIcon_1);
-		btnNewButton_2.addActionListener(new ActionListener() {
+		sendMessageButton.setIcon(imgIcon_1);
+		sendMessageButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		frameMain.getContentPane().add(btnNewButton_2);
+		frameMain.getContentPane().add(sendMessageButton);
 		
 		textArea = new JTextArea();
 		
@@ -202,22 +205,22 @@ public class MainGui extends JFrame {
 			}
 		});
 		
-		textArea_1 = new JTextArea();
-		textArea_1.addKeyListener(new KeyAdapter() {
+		textArea_userInput = new JTextArea();
+		textArea_userInput.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					content ="You :"  + textArea_1.getText()+ '\n';
+			public void keyTyped(KeyEvent e) {
+				if (e.getKeyChar() == '\n') {
+					content ="You :"  + textArea_userInput.getText();
 					textArea.append((content   ));
-					textArea_1.setText("");
-					
-				}
+					textArea_userInput.setText("");
+			}
 			}
 		});
-		textArea_1.setBounds(192, 436, 380, 93);
-		textArea_1.setLineWrap(true);
+		
+		textArea_userInput.setBounds(192, 436, 380, 93);
+		textArea_userInput.setLineWrap(true);
 //		frameMain.getContentPane().add(textArea_1);
-		JScrollPane sp = new JScrollPane(textArea_1);
+		JScrollPane sp = new JScrollPane(textArea_userInput);
 		sp.setBounds(192,436,380,93);
 		
 		frameMain.getContentPane().add(sp);
@@ -228,33 +231,39 @@ public class MainGui extends JFrame {
 		
 		
 		
-		btnNewButton_4 = new JButton();//send picture
-		btnNewButton_4.setBounds(485, 49, 60, 60);
+		sendPictureButton = new JButton();//send picture
+		sendPictureButton.setBounds(485, 49, 60, 60);
 		ImageIcon img = new ImageIcon(new ImageIcon("images.png").getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
-		btnNewButton_4.setIcon(img);
-		btnNewButton_4.addActionListener(new ActionListener() {
+		sendPictureButton.setIcon(img);
+		sendPictureButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		frameMain.getContentPane().add(btnNewButton_4);
+		frameMain.getContentPane().add(sendPictureButton);
 		
 		
 		
 		ImageIcon imgIcon = new ImageIcon(new ImageIcon("user.png").getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH));
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(605, 56, 80, 80);
-		lblNewLabel.setIcon(imgIcon);
-		frameMain.getContentPane().add(lblNewLabel);
+		JLabel user_Avatar = new JLabel("New label");
+		user_Avatar.setBounds(605, 56, 80, 80);
+		user_Avatar.setIcon(imgIcon);
+		frameMain.getContentPane().add(user_Avatar);
 		
-		JButton button = new JButton();
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		JButton sendFilebutton = new JButton();
+		JFileChooser fc = new JFileChooser();
+		
+		sendFilebutton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
 			}
 		});
+		
+		
 		ImageIcon imgicon = new ImageIcon(new ImageIcon("3.png").getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH));
-		button.setIcon(imgicon);
-		button.setBounds(203, 49, 60, 60);
-		frameMain.getContentPane().add(button);
+		sendFilebutton.setIcon(imgicon);
+		sendFilebutton.setBounds(203, 49, 60, 60);
+		frameMain.getContentPane().add(sendFilebutton);
 		
 	}
 }
