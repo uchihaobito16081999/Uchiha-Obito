@@ -55,6 +55,13 @@ public class requestForm extends JFrame {
 		JList list = new JList();// cai list yeu cau ket ban
 		
 		list.setBounds(16, 34, 415, 194);
+		list.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String value = (String)list.getModel().getElementAt(list.locationToIndex(e.getPoint()));
+				textNameFriend.setText(value);
+			}
+		});
 		JScrollPane scroller4List = new JScrollPane(list);
 		scroller4List.setBounds(16,34,415,194);
 		contentPane.add(scroller4List);
