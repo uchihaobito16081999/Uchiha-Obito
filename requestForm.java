@@ -4,6 +4,7 @@ import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -54,7 +55,10 @@ public class requestForm extends JFrame {
 		JList list = new JList();// cai list yeu cau ket ban
 		
 		list.setBounds(16, 34, 415, 194);
-		contentPane.add(list);
+		JScrollPane scroller4List = new JScrollPane(list);
+		scroller4List.setBounds(16,34,415,194);
+		contentPane.add(scroller4List);
+		
 		
 		JButton accept = new JButton("accept");
 		accept.addMouseListener(new MouseAdapter() { // chap nhan ket ban thi them ban vao list friend
